@@ -6,7 +6,10 @@ import { useEffect } from 'react'
 // original vanilla script. Respects prefers-reduced-motion.
 const clamp01 = (n) => Math.max(0, Math.min(1, n))
 const ramp = (t, a, b) => clamp01((t - a) / (b - a))
-const curve = (p) => Math.min(ramp(p, 0, 0.25), 1 - ramp(p, 0.75, 1))
+// Grow 0→0.2, hold 0.2→0.5, shrink back to scale 1 by ~0.66 — i.e. *before*
+// the sticky phone releases at p≈0.667 — so it never overlaps the annotation
+// notes that scroll up right after it (the desktop-only overlap).
+const curve = (p) => Math.min(ramp(p, 0, 0.2), 1 - ramp(p, 0.5, 0.66))
 
 export default function useImmersion() {
   useEffect(() => {
@@ -17,8 +20,8 @@ export default function useImmersion() {
     const recomputeBumps = () => {
       const vw = window.innerWidth || 1
       const vh = window.innerHeight || 1
-      const targetW = vw * 0.92
-      const targetH = vh * 0.88
+      const targetW = vw * 0.86
+      const targetH = vh * 0.80
       pins.forEach((pin) => {
         const device = pin.querySelector('.immersive')
         if (!device) return
@@ -26,7 +29,9 @@ export default function useImmersion() {
         const h = device.offsetHeight || 1
         const bump = Math.max(0, Math.min(targetW / w - 1, targetH / h - 1))
         const isLand = device.classList.contains('device--landscape')
-        device.style.setProperty('--max-imm-bump', (isLand ? Math.min(bump, 0.5) : bump).toFixed(3))
+        // Cap the peak so the enlarged phone stays within the viewport and
+        // can't overflow into the notes. Mobile computes to ~0 already.
+        device.style.setProperty('--max-imm-bump', Math.min(bump, isLand ? 0.5 : 0.2).toFixed(3))
       })
     }
 
