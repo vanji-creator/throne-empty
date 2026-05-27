@@ -30,19 +30,37 @@ export default function useImmersion() {
       })
     }
 
+    const meter = document.querySelector('[data-resistance-meter]')
+    const meterPct = meter && meter.querySelector('[data-resist-pct]')
+
     let raf = 0
     const onScroll = () => {
       if (raf) return
       raf = requestAnimationFrame(() => {
         raf = 0
         const vh = window.innerHeight || 1
+        let engaged = null
         pins.forEach((pin) => {
           const r = pin.getBoundingClientRect()
           const p = clamp01((vh - r.top) / (r.height + vh))
           const imm = curve(p)
           const device = pin.querySelector('.immersive')
           if (device) device.style.setProperty('--immersion', imm.toFixed(3))
+          // The device is "stuck" (resistance felt) while its sticky child holds:
+          // top scrolled past the viewport top, bottom still below it.
+          if (r.top <= 0 && r.bottom > vh) engaged = r
         })
+        if (meter) {
+          if (engaged) {
+            const travel = engaged.height - vh
+            const resist = travel > 0 ? clamp01(-engaged.top / travel) : 0
+            meter.style.setProperty('--resist', resist.toFixed(3))
+            if (meterPct) meterPct.textContent = `${Math.round(resist * 100)}%`
+            meter.setAttribute('data-on', 'true')
+          } else {
+            meter.setAttribute('data-on', 'false')
+          }
+        }
       })
     }
     let rafR = 0

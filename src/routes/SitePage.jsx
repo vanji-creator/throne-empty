@@ -5,6 +5,7 @@ import Argument from '../sections/Argument.jsx'
 import Redesign from '../sections/Redesign.jsx'
 import CatchUp from '../sections/CatchUp.jsx'
 import Outro from '../sections/Outro.jsx'
+import ResistanceMeter from '../components/ResistanceMeter.jsx'
 import useReveal from '../hooks/useReveal.js'
 import useImmersion from '../hooks/useImmersion.js'
 
@@ -27,6 +28,7 @@ export default function SitePage() {
         <CatchUp />
         <Outro />
       </main>
+      <ResistanceMeter />
     </>
   )
 }

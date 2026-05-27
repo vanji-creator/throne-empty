@@ -128,11 +128,32 @@ const SLIDES = [
   },
 ]
 
-export const CARDS = [...RAW, ...SLIDES]
+// ---- social / link-preview card (Open Graph 1.91:1) ----
+const OG = {
+  id: 'og', w: 1200, h: 630,
+  render: () => (
+    <Backdrop>
+      <div className="flex w-full items-center justify-between px-[96px]">
+        <div className="max-w-[600px]">
+          <div className="mb-[26px] font-mono text-[19px] uppercase tracking-[0.16em] text-ink-dim">A YouTube Music Redesign</div>
+          <div className="font-display text-[140px] leading-[0.88] tracking-[-0.02em]">Throne<br /><em className="italic text-accent">Empty.</em></div>
+          <div className="mt-[36px] h-[3px] w-[64px] bg-accent" />
+          <div className="mt-[30px] font-mono text-[20px] uppercase tracking-[0.14em] text-ink-mute">Case Study · iOS · 2026</div>
+        </div>
+        <div className="shrink-0" style={{ zoom: 0.74 }}>
+          <PhoneFrame variant="portrait"><SlotScreen id="np" /></PhoneFrame>
+        </div>
+      </div>
+    </Backdrop>
+  ),
+}
+
+export const CARDS = [...RAW, ...SLIDES, OG]
 export const CARD_BY_ID = Object.fromEntries(CARDS.map((c) => [c.id, c]))
 
 // filenames for the export script (kept in sync here)
 export const EXPORT_NAMES = {
   np: 'np', library: 'library', search: 'search', queue: 'queue', home: 'home', landscape: 'landscape',
   s1: 'slide-1-cover', s2: 'slide-2-thesis', s3: 'slide-3-nowplaying', s4: 'slide-4-triptych', s5: 'slide-5-home', s6: 'slide-6-cta',
+  og: 'og-card',
 }

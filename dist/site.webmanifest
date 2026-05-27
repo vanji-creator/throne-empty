@@ -1,0 +1,15 @@
+{
+  "name": "Throne Empty — A YouTube Music Redesign",
+  "short_name": "Throne Empty",
+  "description": "A six-screen iOS redesign of YouTube Music — a product case study drawn by an engineer, not a designer.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#161513",
+  "theme_color": "#161513",
+  "icons": [
+    { "src": "/favicon.svg", "type": "image/svg+xml", "sizes": "any" },
+    { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192", "purpose": "any" },
+    { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512", "purpose": "any" }
+  ]
+}

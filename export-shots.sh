@@ -23,6 +23,7 @@ CARDS=(
   "s4         slide-4-triptych.png   1080 1350"
   "s5         slide-5-home.png       1080 1350"
   "s6         slide-6-cta.png        1080 1350"
+  "og         og-card.png            1200  630"
 )
 
 echo "Building…"

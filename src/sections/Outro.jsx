@@ -2,7 +2,8 @@ const META = [
   ['Designer · Engineer', 'Vikash'],
   ['Tools', 'React · Tailwind · Claude'],
   ['Purpose', 'An open letter'],
-  ['To', 'The YT Music team'],
+  ['Reach me', 'vikashvanchi@gmail.com', 'mailto:vikashvanchi@gmail.com'],
+  ['Portfolio', 'vanjivikash.vercel.app', 'https://vanjivikash.vercel.app'],
   ['Date', 'June 2026'],
 ]
 
@@ -29,10 +30,14 @@ export default function Outro() {
 
           <aside className="reveal" style={{ '--delay': '240ms' }}>
             <ul className="flex flex-col gap-[14px] border-t border-rule pt-[24px]">
-              {META.map(([k, v]) => (
+              {META.map(([k, v, href]) => (
                 <li key={k} className="flex flex-col gap-[3px]">
                   <span className="font-mono text-[10.5px] uppercase tracking-[0.1em] text-ink-dim">{k}</span>
-                  <span className="text-[17px] text-ink">{v}</span>
+                  {href ? (
+                    <a href={href} target="_blank" rel="noopener noreferrer" className="w-fit text-[17px] text-ink underline decoration-rule decoration-1 underline-offset-[5px] transition-colors hover:text-accent hover:decoration-accent">{v}</a>
+                  ) : (
+                    <span className="text-[17px] text-ink">{v}</span>
+                  )}
                 </li>
               ))}
             </ul>
@@ -40,9 +45,14 @@ export default function Outro() {
           </aside>
         </div>
 
-        <footer className="mt-[clamp(60px,8vw,120px)] flex items-center justify-between border-t border-rule pt-[28px]">
+        <footer className="mt-[clamp(60px,8vw,120px)] border-t border-rule pt-[28px]">
+          <p className="mb-[18px] max-w-[760px] text-[12px] leading-[1.6] text-ink-dim">
+            Unofficial design concept. Not affiliated with, endorsed by, or connected to YouTube, YouTube Music, or Google LLC. All product names, logos, and trademarks are the property of their respective owners; shown here only for the purpose of design critique.
+          </p>
+          <div className="flex items-center justify-between">
           <span className="font-mono text-[11.5px] uppercase tracking-[0.08em] text-ink-dim">© 2026 · Throne Empty · A Case Study</span>
           <span className="font-mono text-[11.5px] uppercase tracking-[0.08em] text-ink-dim">Drawn in React</span>
+          </div>
         </footer>
       </div>
     </section>
