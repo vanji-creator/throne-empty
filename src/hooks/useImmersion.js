@@ -30,8 +30,7 @@ export default function useImmersion() {
       })
     }
 
-    const meter = document.querySelector('[data-resistance-meter]')
-    const meterPct = meter && meter.querySelector('[data-resist-pct]')
+    const cue = document.querySelector('[data-scroll-cue]')
 
     let raf = 0
     const onScroll = () => {
@@ -50,15 +49,14 @@ export default function useImmersion() {
           // top scrolled past the viewport top, bottom still below it.
           if (r.top <= 0 && r.bottom > vh) engaged = r
         })
-        if (meter) {
+        if (cue) {
           if (engaged) {
             const travel = engaged.height - vh
-            const resist = travel > 0 ? clamp01(-engaged.top / travel) : 0
-            meter.style.setProperty('--resist', resist.toFixed(3))
-            if (meterPct) meterPct.textContent = `${Math.round(resist * 100)}%`
-            meter.setAttribute('data-on', 'true')
+            const progress = travel > 0 ? clamp01(-engaged.top / travel) : 0
+            cue.style.setProperty('--cue', progress.toFixed(3))
+            cue.setAttribute('data-on', 'true')
           } else {
-            meter.setAttribute('data-on', 'false')
+            cue.setAttribute('data-on', 'false')
           }
         }
       })
