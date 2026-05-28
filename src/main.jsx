@@ -1,6 +1,7 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { HashRouter, Routes, Route } from 'react-router-dom'
+import { Analytics } from '@vercel/analytics/react'
 import './index.css'
 import SitePage from './routes/SitePage.jsx'
 import GalleryPage from './routes/GalleryPage.jsx'
@@ -15,5 +16,6 @@ createRoot(document.getElementById('root')).render(
         <Route path="/shot/:id" element={<ShotPage />} />
       </Routes>
     </HashRouter>
+    <Analytics />
   </React.StrictMode>
 )
