@@ -6,6 +6,7 @@ import './index.css'
 import SitePage from './routes/SitePage.jsx'
 import GalleryPage from './routes/GalleryPage.jsx'
 import ShotPage from './routes/ShotPage.jsx'
+import PdfPage from './routes/PdfPage.jsx'
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -13,6 +14,7 @@ createRoot(document.getElementById('root')).render(
       <Routes>
         <Route path="/" element={<SitePage />} />
         <Route path="/gallery" element={<GalleryPage />} />
+        <Route path="/pdf" element={<PdfPage />} />
         <Route path="/shot/:id" element={<ShotPage />} />
       </Routes>
     </HashRouter>

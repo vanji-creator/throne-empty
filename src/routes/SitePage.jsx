@@ -18,7 +18,10 @@ export default function SitePage() {
       <header className="relative z-[5] pt-[28px]">
         <div className="container flex items-center justify-between">
           <span className="font-mono text-[12px] uppercase tracking-[0.12em] text-ink-soft">Throne Empty</span>
-          <Link to="/gallery" className="font-mono text-[10.5px] uppercase tracking-[0.1em] text-ink-mute hover:text-accent">Gallery →</Link>
+          <nav className="flex items-center gap-[16px] font-mono text-[10.5px] uppercase tracking-[0.1em]">
+            <Link to="/pdf" className="text-ink-mute hover:text-accent">PDF</Link>
+            <Link to="/gallery" className="text-ink-mute hover:text-accent">Gallery →</Link>
+          </nav>
         </div>
       </header>
       <main>
